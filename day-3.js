@@ -341,5 +341,5 @@ const answer2 = () => {
   return accumulator
 }
 
-console.log(`First score - ${answer1()}`)
-console.log(`Second score - ${answer2()}`)
+console.log(`First answer - ${answer1()}`)
+console.log(`Second answer - ${answer2()}`)
