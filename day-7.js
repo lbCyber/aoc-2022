@@ -26,7 +26,7 @@ const addSize = (size) => {
   addIt()
 }
 
-const addData = (name, size = -1) => { // datatype 0 = dir, datatype 1 = file
+const addData = (name, size = -1) => {
   let newName = name.replace('.','_') // remove periods to avoid object pathing issues
   const pathRef = fd.$$currPath.reduce((x,y)=>x[y], fd) // makes path reference for file system object
   if (size > -1) { // make new file

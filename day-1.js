@@ -252,8 +252,5 @@ const calFind = () => {
   return totals.sort((a, b) => { return b - a })
 }
 
-// return output for puzzle 1
-console.log(calFind()[0])
-
-// return output for puzzle 2
-console.log(calFind().slice(0, 3).reduce((a, b) => a + b))
+console.log(`First answer - ${calFind()[0]}`)
+console.log(`Second answer - ${calFind().slice(0, 3).reduce((a, b) => a + b)}`)
