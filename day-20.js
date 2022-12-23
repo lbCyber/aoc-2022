@@ -5023,28 +5023,24 @@ const answer1 = () => {
 }
 
 const answer2 = () => {
-  let mixedArr = input.map((x,y)=>{return {val: x * 811589153, key: y}})
+  let mixedArr = input.map((x,y)=>{return {val: x * 811589153, key: y, origKey: y}})
+  let newMix = [...mixedArr]
   for (i = 0;i < 10;i++) {
-    let newMix = [...mixedArr]
     mixedArr.forEach((n,index)=>{
-      const currPos = newMix.findIndex(x=>x.key == index),
+      const currPos = newMix.findIndex(x=>x.origKey == n.origKey),
             moveTo = n.val + currPos,
             arrLength = newMix.length - 1,
             newPos = (arrLength + moveTo) % arrLength
-      spliceIt(newMix,newPos,currPos,{val: n.val, key: index})
+      spliceIt(newMix,newPos,currPos,{val: n.val, key: index, origKey: n.origKey})
     })
-    mixedArr = newMix.map((x,y)=>{return {val: x.val, key: y}})
+    newMix = newMix.map((x,y)=>{return {val: x.val, key: y, origKey: x.origKey}})
   }
-  const zeroPos = mixedArr.map(x=>x.val).indexOf(0),
-        coord1 = mixedArr[(zeroPos + 1000) % mixedArr.length].val,
-        coord2 = mixedArr[(zeroPos + 2000) % mixedArr.length].val,
-        coord3 = mixedArr[(zeroPos + 3000) % mixedArr.length].val
-  // console.log(mixedArr[1])
-  // console.log(zeroPos, coord1, coord2, coord3)
+  const zeroPos = newMix.map(x=>x.val).indexOf(0),
+        coord1 = newMix[(zeroPos + 1000) % newMix.length].val,
+        coord2 = newMix[(zeroPos + 2000) % newMix.length].val,
+        coord3 = newMix[(zeroPos + 3000) % newMix.length].val
   return coord1 + coord2 + coord3
 }
 
-console.log(answer1())
-console.log(answer2())
-console.log(answer1())
-// -8393455020326 <>
+console.log(`First answer - ${answer1()}`)
+console.log(`Second answer - ${answer2()}`)
